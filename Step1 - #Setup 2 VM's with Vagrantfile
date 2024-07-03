@@ -1,0 +1,21 @@
+#Setup 2 VM's with Vagrantfile
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "mongo" do |mongo|
+    mongo.vm.box = "ubuntu/bionic64"
+    mongo.vm.network "private_network", type: "dhcp"
+    mongo.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible/playbooks/mongo_setup.yml"
+    end
+  end
+
+  config.vm.define "backup" do |backup|
+    backup.vm.box = "ubuntu/bionic64"
+    backup.vm.network "private_network", type: "dhcp"
+    backup.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible/playbooks/backup_setup.yml"
+    end
+  end
+
+end
