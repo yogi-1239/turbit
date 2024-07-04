@@ -1,0 +1,17 @@
+Summary
+MongoDB VM (mongo):
+
+MongoDB is installed and running.
+OpenVPN server is configured and running.
+Backup VM (backup):
+
+mongodump is installed.
+A backup directory is created.
+A cron job is set up to perform daily backups of the MongoDB database.
+The project is now fully set up with MongoDB running on one VM, backups being taken regularly on another VM, and secure communication between the VMs through a VPN. This setup ensures data redundancy and security for your MongoDB instance.
+
+
+
+
+
+
