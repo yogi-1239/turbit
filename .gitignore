@@ -1,0 +1,6 @@
+# .gitignore
+.vagrant/
+*.log
+*.swp
+*.swo
+*.bak
