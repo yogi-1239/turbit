@@ -1,1 +1,23 @@
+#Create 'vpn_setup.yml' under 'ansible/playbooks/'
+- hosts: mongo
+  become: yes
+  roles:
+    - vpn
 
+#Creating a role for VPN in 'ansible/roles/vpn/tasks/main.yml'
+- name: Install OpenVPN
+  apt:
+    name: openvpn
+    state: present
+    update_cache: yes
+
+- name: Configure OpenVPN server
+  copy:
+    src: /vagrant/ansible/roles/vpn/files/server.conf
+    dest: /etc/openvpn/server.conf
+
+- name: Start OpenVPN service
+  service:
+    name: openvpn
+    state: started
+    enabled: yes
