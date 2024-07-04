@@ -1,0 +1,3 @@
+ansible-playbook -i ansible/inventory.ini ansible/playbooks/mongo_setup.yml
+ansible-playbook -i ansible/inventory.ini ansible/playbooks/backup_setup.yml
+ansible-playbook -i ansible/inventory.ini ansible/playbooks/vpn_setup.yml
