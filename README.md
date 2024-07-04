@@ -10,9 +10,9 @@ The Vagrantfile sets up two Ubuntu VMs:
 ## Ansible Playbooks
 - `mongo_setup.yml`: Installs and configures MongoDB on the `mongo` VM.
 - `backup_setup.yml`: Sets up a cron job on the `backup` VM to regularly backup MongoDB data.
-- `vpn_setup.yml`: Configures OpenVPN on the `mongo` VM to allow secure connections from the `backup` VM.
+- `vpn_setup.yml`: Configures OpenVPN on the `mongo` VM to allow secure connections from `backup` VM.
 
-## Steps to Run
+## How to run
 1. Clone the repository.
 2. Run `vagrant up` to start the VMs and provision them using Ansible.
 3. Connect to the VPN from the `backup` VM to the `mongo` VM.
