@@ -1,0 +1,5 @@
+#Create 'vpn_setup.yml' under 'ansible/playbooks/'
+- hosts: mongo
+  become: yes
+  roles:
+    - vpn
