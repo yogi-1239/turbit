@@ -1,0 +1,7 @@
+# ansible/roles/backup/tasks/main.yml
+- name: Install cron job for MongoDB backups
+  cron:
+    name: "MongoDB Backup"
+    minute: "0"
+    hour: "3"
+    job: "/usr/bin/mongodump --out /vagrant/backups/$(date +\%F-\%T)"
