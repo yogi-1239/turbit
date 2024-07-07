@@ -1,0 +1,5 @@
+ #Create 'backup_setup.yml' under 'ansible/playbooks/'.
+- hosts: all
+  become: yes
+  roles:
+    - backup
