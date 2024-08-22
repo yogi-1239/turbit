@@ -1,5 +1,33 @@
- #Create 'backup_setup.yml' under 'ansible/playbooks/'.
+---
 - hosts: all
   become: yes
-  roles:
-    - backup
+  tasks:
+    - name: Install cron and rsync
+      apt:
+        name:
+          - cron
+          - rsync
+        state: present
+
+    - name: Create backup directory
+      file:
+        path: /var/backups/mongo
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Set up cron job for MongoDB backup
+      cron:
+        name: "MongoDB Backup"
+        minute: "0"
+        hour: "*/6"
+        job: "rsync -a --delete root@192.168.56.10:/var/lib/mongodb/ /var/backups/mongo/"
+
+    - name: Ensure SSH access to mongo_vm
+      shell: ssh-keygen -f /root/.ssh/id_rsa -N ''
+      args:
+        creates: /root/.ssh/id_rsa
+
+    - name: Copy SSH public key to mongo_vm
+      shell: sshpass -p "vagrant" ssh-copy-id -o StrictHostKeyChecking=no root@192.168.56.1 #IP address of MongoDB server
