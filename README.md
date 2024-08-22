@@ -2,6 +2,15 @@
 
 This project sets up a MongoDB instance on one VM, backups on another, and a VPN connection between the two VMs using Vagrant and Ansible.This project automates the setup of a MongoDB instance with regular backups and a secure VPN connection using Vagrant and Ansible.
 
+# Prerequisites
+- Install Vagrant
+- Install virtualbox
+- Install Ansible
+
+# Setup Vagrant Environment
+- Create project directory
+- Initilialize Vagrant
+
 ## Vagrantfile
 The Vagrantfile sets up two Ubuntu VMs:
 - `mongo`: Runs MongoDB.
