@@ -1,7 +1,18 @@
-#MongoDB setup playbook
+---
 - hosts: all
   become: yes
-  roles:
-    - mongo
+  tasks:
+    - name: Update APT package manager repositories cache
+      apt:
+        update_cache: yes
 
-   
+    - name: Install MongoDB
+      apt:
+        name: mongodb
+        state: present
+
+    - name: Ensure MongoDB is running and enabled
+      service:
+        name: mongodb
+        state: started
+        enabled: yes
