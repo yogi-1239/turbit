@@ -1,0 +1,32 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Install OpenVPN
+      apt:
+        name: openvpn
+        state: present
+
+    - name: Copy client config file
+      copy:
+        dest: /etc/openvpn/client.conf
+        content: |
+          client
+          dev tun
+          proto udp
+          remote 192.168.56.10 1194
+          resolv-retry infinite
+          nobind
+          persist-key
+          persist-tun
+          remote-cert-tls server
+          auth SHA256
+          cipher AES-256-CBC
+          key-direction 1
+          verb 3
+
+    - name: Start OpenVPN client service
+      service:
+        name: openvpn
+        state: started
+        enabled: yes
