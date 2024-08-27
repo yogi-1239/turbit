@@ -21,7 +21,7 @@
       cron:
         name: "MongoDB Backup"
         minute: "0"
-        hour: "*/6"
+        hour: "*/1"
         job: "rsync -a --delete root@192.168.56.10:/var/lib/mongodb/ /var/backups/mongo/"
 
     - name: Ensure SSH access to mongo_vm
